@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+	<context id="DB2Tables" targetRuntime="MyBatis3">
+		
+		<!-- 指定生成 Mapper 的继承模板 -->
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="com.xiaoshu.base.dao.BaseMapper" />
+        </plugin>
+
+        <!-- 生成 JavaBean 对象重写 toString方法 -->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+
+        <!-- 生成 JavaBean 对象继承 Serializable 类 -->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+        
+        <commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		
+		<!-- 配置数据库连接 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/ssm" userId="root"
+			password="xqx1234">
+		</jdbcConnection>
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!-- 指定javaBean生成的位置 -->
+		<javaModelGenerator targetPackage="com.xiaoshu.entity"
+			targetProject=".\src\main\java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<!--指定sql映射文件生成的位置 -->
+		<sqlMapGenerator targetPackage="mapper" targetProject=".\src\main\resources">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<!-- 指定dao接口生成的位置，mapper接口 -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.xiaoshu.dao" targetProject=".\src\main\java">
+			<!-- <property name="rootInterface" value="com.xiaoshu.dao.BaseMapper"/> -->
+		</javaClientGenerator>
+
+		<!-- table指定每个表的生成策略 -->
+		
+<!-- 		<table tableName="log" domainObjectName="Log" enableInsert ="false" enableSelectByPrimaryKey="false" enableUpdateByPrimaryKey="false" enableDeleteByPrimaryKey="false"></table> -->
+	
+<!-- 		<table tableName="log" domainObjectName="Log"></table>
+		<table tableName="attachment" domainObjectName="Attachment"></table>
+		<table tableName="menu" domainObjectName="Menu"></table>
+		<table tableName="operation" domainObjectName="Operation"></table>
+		<table tableName="role" domainObjectName="Role"></table>
+		<table tableName="token" domainObjectName="Token"></table> -->
+		<table tableName="user" domainObjectName="User"></table>
+		
+		<!-- 		<table tableName="log" domainObjectName="Log" enableSelectByExample="false" enableDeleteByExample="false" enableUpdateByExample="false"></table> -->
+<!-- 		<table tableName="attachment" domainObjectName="Attachment" enableSelectByExample="false" enableDeleteByExample="false" enableUpdateByExample="false"></table> -->
+<!-- 		<table tableName="menu" domainObjectName="Menu" enableSelectByExample="false" enableDeleteByExample="false" enableUpdateByExample="false"></table> -->
+<!-- 		<table tableName="operation" domainObjectName="Operation" enableSelectByExample="false" enableDeleteByExample="false" enableUpdateByExample="false"></table> -->
+<!-- 		<table tableName="role" domainObjectName="Role" enableSelectByExample="false" enableDeleteByExample="false" enableUpdateByExample="false"></table> -->
+<!-- 		<table tableName="token" domainObjectName="Token" enableSelectByExample="false" enableDeleteByExample="false" enableUpdateByExample="false"></table> -->
+<!-- 		<table tableName="user" domainObjectName="User" enableSelectByExample="false" enableDeleteByExample="false" enableUpdateByExample="false"></table> -->
+		
+		
+<!-- 		<table tableName="log" domainObjectName="Log" enableInsert ="false" enableSelectByPrimaryKey="false" enableUpdateByPrimaryKey="false" enableDeleteByPrimaryKey="false"> -->
+<!-- 			<property name="rootInterface" value="com.xiaoshu.dao.BaseMapper&lt;Log&gt;" /> -->
+<!-- 		</table> -->
+<!-- 		<table tableName="attachment" domainObjectName="Attachment" enableInsert ="false" enableSelectByPrimaryKey="false"> -->
+<!-- 			<property name="rootInterface" -->
+<!-- 				value="com.xiaoshu.dao.BaseMapper&lt;Attachment&gt;" /> -->
+<!-- 		</table> -->
+<!-- 		<table tableName="menu" domainObjectName="Menu" enableInsert ="false" enableSelectByPrimaryKey="false"> -->
+<!-- 			<property name="rootInterface" value="com.xiaoshu.dao.BaseMapper&lt;Menu&gt;" /> -->
+<!-- 		</table> -->
+<!-- 		<table tableName="operation" domainObjectName="Operation" enableInsert ="false" enableSelectByPrimaryKey="false"> -->
+<!-- 			<property name="rootInterface" value="com.xiaoshu.dao.BaseMapper&lt;Operation&gt;" /> -->
+<!-- 		</table> -->
+<!-- 		<table tableName="role" domainObjectName="Role" enableInsert ="false" enableSelectByPrimaryKey="false"> -->
+<!-- 			<property name="rootInterface" value="com.xiaoshu.dao.BaseMapper&lt;Role&gt;" /> -->
+<!-- 		</table> -->
+<!-- 		<table tableName="token" domainObjectName="Token" enableInsert ="false" enableSelectByPrimaryKey="false"> -->
+<!-- 			<property name="rootInterface" value="com.xiaoshu.dao.BaseMapper&lt;Token&gt;" /> -->
+<!-- 		</table> -->
+<!-- 		<table tableName="user" domainObjectName="User" enableInsert ="false" enableSelectByPrimaryKey="false"> -->
+<!-- 			<property name="rootInterface" value="com.xiaoshu.dao.BaseMapper&lt;User&gt;" /> -->
+<!-- 		</table> -->
+	</context>
+</generatorConfiguration>

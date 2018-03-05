@@ -1,0 +1,114 @@
+@charset "utf-8";
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,p,form,input,button,textarea,th,td{margin:0;padding:0;}
+	body{
+		height:735px;	
+		overflow-x: hidden;
+		-webkit-text-size-adjust:none;
+		font-size: 62.5%;
+		background:#f8f7f5;
+		font-family:'Microsoft Yahei','Simsun';
+	}
+	a{text-decoration:none;font-size: 14px;}
+	a:visited,a:hover{
+		text-decoration: none;
+	}
+/*顶部*/
+.top_pad{
+	    background-color:#29B6F6;
+		color:#ffffff;
+		line-height:45px;
+		height: 45px;
+		display:-webkit-flex;
+	}
+.top_left{
+	position:absolute;
+	float:left;
+	}
+.top_left a{
+	font-size: 19px;
+	color:#ffffff;
+	padding-left:10px;
+	padding-bottom:10px;
+	}
+.top_right{
+	position:absolute;
+	float:right;
+	margin:0px auto auto 75%;
+	padding:0px 0px;
+	}
+.top_right a{
+	font-size:10px;
+	color:#ffffff;
+	line-height:10px;
+	text-align:center;	
+	}
+.top_right .login{
+	float:right;
+	position:relative;
+	margin:0px 10px auto auto;
+	padding-top:10px;
+	width:30px;
+	height:100%;
+	line-height:15px;
+	text-align:center;
+	}
+.top_right .register{
+	position:relative;
+	float:right;
+	margin:0px 15px auto auto;
+	padding-top:10px;
+	width:30px;
+	height:100%;
+	line-height:15px;
+	text-align:center;
+	}
+.p1{
+	margin:3px auto 3px 6px;
+	padding-top:5px;
+	padding-left:2px;
+	line-height:10px
+}
+.p1 img{
+	width:6px;
+	height:9px;
+}
+/*第一部分*/
+.mt-1{
+	margin-top:0.6rem;
+}
+.border{
+	background:#fff;
+	border-bottom:1px solid lightgray;
+	
+}
+.left{margin-left:0.93rem;}
+.right{color:rgb(226,226,226);font-size:18px;margin:5px 7px 10px 50px;
+height:100%;}
+.title{ height:40px; line-height:17px; }
+.t-left{ position:relative; top:0.81rem; left:1.32rem; width:0.9rem; font-size:14px;}
+.t-right{position:relative;  top:0.81rem;right:-20rem;color:rgb(198,187,169); font-size:18px;}
+.title .input1{position:absolute; left:9rem; width:70%;height:6%;background:transparent;border:1px solid #ffffff}
+.title .input1:active{border:none;}
+
+.describe{height:140px;}
+.input2{position:absolute; left:9rem; width:70%;height:20%;background:transparent;border:1px solid #ffffff;text-align:;}
+
+.input3{position:absolute; left:9rem; width:70%;height:20%;background:transparent;border:1px solid #ffffff;text-align:right;}
+	/*第二部分*/
+.mt-2{
+	margin-top:0.9rem;
+}
+.arr-right{position:absolute; float:right;top:0.21rem; right:0.25rem; width:0.14rem; height:0.24rem; background:url(../img/rt-bk.jpg) no-repeat; background-size:0.14rem 0.24rem;}
+.sortselect{float:right; margin-top:7px;}
+.select{background:none;float:right;border:0; width:130px;margin-top:7px;text-align:center; color:#29B6F6;font-size:18px;}
+/*第三部分*/
+.mt-3{margin-top:1.4rem;}
+
+
+
+/*第四部分*/
+.mt-4{margin-top:1.2rem;}
+
+.mt-5{margin-top:1.2rem;}
+.publish{background:#29B6F6; color:#fff;border-radius:1.3rem;text-align:center;font-size:15px;padding-top:10px;}
+.publish a{color:#fff; cursor:pointer;}

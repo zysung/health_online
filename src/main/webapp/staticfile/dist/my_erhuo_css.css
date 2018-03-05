@@ -1,0 +1,91 @@
+@charset "utf-8";
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,p,form,input,button,textarea,th,td{margin:0;padding:0;}
+	body{
+		height:735px;	
+		overflow-x: hidden;
+		-webkit-text-size-adjust:none;
+		font-size: 62.5%;
+		background:#f8f7f5;
+		font-family:'Microsoft Yahei','Simsun';
+	}
+	a{text-decoration:none;font-size: 14px;}
+	a:visited,a:hover{
+		text-decoration: none;
+	}
+/*顶部*/
+.top_pad{
+	    background-color:#29B6F6;
+		color:#ffffff;
+		line-height:45px;
+		height: 45px;
+		display:-webkit-flex;
+	}
+.top_left{
+	position:absolute;
+	float:left;
+	}
+.top_left a{
+	font-size: 19px;
+	color:#ffffff;
+	padding-left:10px;
+	padding-bottom:10px;
+	}
+.top_right{
+	position:absolute;
+	float:right;
+	margin:0px auto auto 83%;
+	padding:0px 0px;
+	}
+.top_right a{
+	font-size:10px;
+	color:#ffffff;
+	line-height:10px;
+	text-align:center;	
+	}
+.top_right .publish{
+	float:right;
+	margin:0px 10px auto auto;
+	padding-top:10px;
+	width:30px;
+	height:100%;
+	line-height:15px;
+	text-align:center;
+	}
+/*目录*/
+.catalog{
+    font-size:14px;
+	padding:5px;
+	
+	}
+	
+/*列表*/
+.list_info li{
+		height: 100px;
+		width: 100%;
+		border-bottom: 1px #eee solid;
+		background-color: #ffffff;
+		padding:0 15px 0 15px;
+		text-decoration: none;
+	}
+.list_info a{
+		color: #101010;
+	}
+.list_info .title{
+		font-size: 1.6rem;
+	}
+.list_info .title .img_num{
+		float: right;	
+	}
+.list_info .information{
+		font-size: 1.2rem;
+	}
+.list_info .price{
+		font-size: 2rem;
+		color: #29b6f6;
+	}	
+	
+	
+	
+	
+	
+	

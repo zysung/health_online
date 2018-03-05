@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.gdin.mapper.DoctorMapper" >
+  <resultMap id="BaseResultMap" type="cn.edu.gdin.po.Doctor" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="CHAR" />
+    <result column="title" property="title" jdbcType="CHAR" />
+    <result column="expertise" property="expertise" jdbcType="VARCHAR" />
+    <result column="marks" property="marks" jdbcType="CHAR" />
+    <result column="practice_point" property="practicePoint" jdbcType="INTEGER" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.edu.gdin.po.Doctor" extends="BaseResultMap" >
+    <result column="avatar" property="avatar" jdbcType="LONGVARBINARY" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, name, sex, title, expertise, marks, practice_point, description, phone
+  </sql>
+  <sql id="Blob_Column_List" >
+    avatar
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="cn.edu.gdin.po.DoctorExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from doctor
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.edu.gdin.po.DoctorExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from doctor
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from doctor
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from doctor
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.edu.gdin.po.DoctorExample" >
+    delete from doctor
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.edu.gdin.po.Doctor" >
+    insert into doctor (id, name, sex, title, 
+      expertise, marks, practice_point, 
+      description, phone, avatar
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, #{title,jdbcType=CHAR}, 
+      #{expertise,jdbcType=VARCHAR}, #{marks,jdbcType=CHAR}, #{practicePoint,jdbcType=INTEGER}, 
+      #{description,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{avatar,jdbcType=LONGVARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.gdin.po.Doctor" >
+    insert into doctor
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="expertise != null" >
+        expertise,
+      </if>
+      <if test="marks != null" >
+        marks,
+      </if>
+      <if test="practicePoint != null" >
+        practice_point,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="avatar != null" >
+        avatar,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=CHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=CHAR},
+      </if>
+      <if test="expertise != null" >
+        #{expertise,jdbcType=VARCHAR},
+      </if>
+      <if test="marks != null" >
+        #{marks,jdbcType=CHAR},
+      </if>
+      <if test="practicePoint != null" >
+        #{practicePoint,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="avatar != null" >
+        #{avatar,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.edu.gdin.po.DoctorExample" resultType="java.lang.Integer" >
+    select count(*) from doctor
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update doctor
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null" >
+        sex = #{record.sex,jdbcType=CHAR},
+      </if>
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=CHAR},
+      </if>
+      <if test="record.expertise != null" >
+        expertise = #{record.expertise,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marks != null" >
+        marks = #{record.marks,jdbcType=CHAR},
+      </if>
+      <if test="record.practicePoint != null" >
+        practice_point = #{record.practicePoint,jdbcType=INTEGER},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.avatar != null" >
+        avatar = #{record.avatar,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update doctor
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=CHAR},
+      title = #{record.title,jdbcType=CHAR},
+      expertise = #{record.expertise,jdbcType=VARCHAR},
+      marks = #{record.marks,jdbcType=CHAR},
+      practice_point = #{record.practicePoint,jdbcType=INTEGER},
+      description = #{record.description,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      avatar = #{record.avatar,jdbcType=LONGVARBINARY}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update doctor
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=CHAR},
+      title = #{record.title,jdbcType=CHAR},
+      expertise = #{record.expertise,jdbcType=VARCHAR},
+      marks = #{record.marks,jdbcType=CHAR},
+      practice_point = #{record.practicePoint,jdbcType=INTEGER},
+      description = #{record.description,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.gdin.po.Doctor" >
+    update doctor
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=CHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=CHAR},
+      </if>
+      <if test="expertise != null" >
+        expertise = #{expertise,jdbcType=VARCHAR},
+      </if>
+      <if test="marks != null" >
+        marks = #{marks,jdbcType=CHAR},
+      </if>
+      <if test="practicePoint != null" >
+        practice_point = #{practicePoint,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="avatar != null" >
+        avatar = #{avatar,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.edu.gdin.po.Doctor" >
+    update doctor
+    set name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=CHAR},
+      title = #{title,jdbcType=CHAR},
+      expertise = #{expertise,jdbcType=VARCHAR},
+      marks = #{marks,jdbcType=CHAR},
+      practice_point = #{practicePoint,jdbcType=INTEGER},
+      description = #{description,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      avatar = #{avatar,jdbcType=LONGVARBINARY}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.gdin.po.Doctor" >
+    update doctor
+    set name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=CHAR},
+      title = #{title,jdbcType=CHAR},
+      expertise = #{expertise,jdbcType=VARCHAR},
+      marks = #{marks,jdbcType=CHAR},
+      practice_point = #{practicePoint,jdbcType=INTEGER},
+      description = #{description,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!-- 4.6更新 实现分页 -->
+  <select id="findByCondition" resultType="Doctor" parameterType="map">
+  	select * from doctor
+  	<if test="condition!=null">
+  	where (name like #{condition} or practice_point like #{condition} or expertise like #{condition})
+  	</if>
+  	limit #{pageOffset},#{pageSize}
+  </select>
+  <select id="findCount" resultType="int" parameterType="map">
+  	select count(*) from doctor left join hospital on doctor.practice_point = hospital.id
+  	<if test="condition!=null">
+  	where (doctor.name like #{condition} or doctor.expertise like #{condition} or hospital.name like #{condition})
+  	</if>
+  </select>
+  <!-- 4.6测试，多对一关联查询 -->
+	<resultMap type="cn.edu.gdin.po.Doctor"  id="doctorHospitalResultMap">
+  	<id column="id" property="id"/>
+ 	<result column="name" property="name"/>
+ 	<result column="avatar"	property="avatar"/>
+ 	<result column="sex" property="sex"/>
+ 	 <result column="title" property="title"/>
+ 	 <result column="expertise" property="expertise"/>
+ 	 <result column="marks" property="marks"/>
+ 	 <result column="practice_point" property="practicePoint"/>
+ 	 <result column="description" property="description"/>
+ 	 <result column="phone" property="phone"/>
+ 	  <association property="hospital"  javaType="cn.edu.gdin.po.Hospital" >
+ 	 	<id column="hos_id" property="id"/>
+ 	 	<result column="hos_name"  property="name"/>
+ 	 	<result column="address" property="address"/>
+ 	 </association>
+ 	</resultMap>
+  <select id="findDoctorsHospital"   parameterType="map" resultMap="doctorHospitalResultMap">
+ 	select doctor.*,hospital.id as hos_id,hospital.name as hos_name,hospital.address
+ 	from doctor left join hospital
+ 	on doctor.practice_point = hospital.id 
+ 	<if test="condition!=null">
+  	where doctor.name like #{condition} 
+  	or doctor.expertise like #{condition} 
+  	or hospital.name like #{condition}
+  	</if>
+ 	order by marks,title
+ 	<if test="pageOffset!=null">
+  	limit #{pageOffset}
+  	</if>
+  	<if test="pageSize!=null">
+  	,#{pageSize}
+  	</if>
+  </select>
+  <!-- 根据医院查询医生列表 -->
+  <select id="listByHospital" parameterType="Integer"  resultType="Doctor">
+  	select * from doctor
+  	where practice_point=#{hospitalId};
+  </select>
+  <!-- 查询某医院的所有科室-->
+  <select id = "findExpertise"   parameterType="Map"  resultType="String">
+  	select distinct expertise from doctor
+  	<if test="hospitalId!=0">
+  	where practice_point=#{hospitalId};
+  	</if>
+  </select>
+  <!-- 根据医院+科室查询医生列表 -->
+  <select id = "listByHospitalAndExpertise" parameterType="Map"  resultType="Doctor">
+  	select * from doctor
+  	where expertise=#{expertise} and practice_point=#{hospitalId}
+  	order by marks,title
+  </select>
+  <!-- 根据疾病查询医生列表 -->
+  <select id="listByDisease" parameterType="String" resultMap="doctorHospitalResultMap">
+  	select doctor.*,hospital.id as hos_id,hospital.name as hos_name,hospital.address
+	from doctor 
+	left join hospital on doctor.practice_point = hospital.id 
+	left join department on doctor.expertise = department.department_name  
+	where department.disease_info like #{disease}
+	order by marks,title
+  </select>
+  
+</mapper>

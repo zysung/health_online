@@ -1,0 +1,83 @@
+.wrap{
+		height:540px;
+		display: -webkit-flex;
+		flex-direction: column;
+
+	}
+.tabs{
+	height: 45px;
+	width:100%;
+	line-height: 45px;
+}
+
+.tabs a{
+	width:20%;
+	display:block;
+	line-height:45px;
+	font-size: 16px;
+	color:#bbbbbb;
+	text-decoration:none;
+	background-color:#ffffff;
+	text-align:center;
+}
+.tabs a.active{
+	background-color:#ffffff;
+	border-bottom:2px #29b6f6 solid;
+	color:#101010;
+}
+
+.swiper-container{background:#ebebeb;height:495px;width:100%;}
+.swiper-slide{height:495px;width:100%;background:none;color:#101010;}
+.content-slide{
+	height: 495px;
+	font-size:1.6rem;
+
+}
+.swiper-container {overflow:hidden;-webkit-backface-visibility:hidden;-moz-backface-visibility:hidden;-ms-backface-visibility:hidden;-o-backface-visibility:hidden;backface-visibility:hidden;/* Fix of Webkit flickering */	z-index:1;}
+.swiper-wrapper {
+	position:relative;
+	width:100%;
+	-webkit-transition-property:-webkit-transform, left, top;
+	-webkit-transition-duration:0s;
+	-webkit-transform:translate3d(0px,0,0);
+	-webkit-transition-timing-function:ease;
+	
+	-moz-transition-property:-moz-transform, left, top;
+	-moz-transition-duration:0s;
+	-moz-transform:translate3d(0px,0,0);
+	-moz-transition-timing-function:ease;
+	
+	-o-transition-property:-o-transform, left, top;
+	-o-transition-duration:0s;
+	-o-transform:translate3d(0px,0,0);
+	-o-transition-timing-function:ease;
+	-o-transform:translate(0px,0px);
+	
+	-ms-transition-property:-ms-transform, left, top;
+	-ms-transition-duration:0s;
+	-ms-transform:translate3d(0px,0,0);
+	-ms-transition-timing-function:ease;
+	
+	transition-property:transform, left, top;
+	transition-duration:0s;
+	transform:translate3d(0px,0,0);
+	transition-timing-function:ease;
+
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+}
+.swiper-free-mode > .swiper-wrapper {
+	-webkit-transition-timing-function: ease-out;
+	-moz-transition-timing-function: ease-out;
+	-ms-transition-timing-function: ease-out;
+	-o-transition-timing-function: ease-out;
+	transition-timing-function: ease-out;
+	margin: 0 auto;
+}
+.swiper-slide {
+	float: left;
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+}

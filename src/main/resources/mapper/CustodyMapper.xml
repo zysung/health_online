@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.gdin.mapper.CustodyMapper" >
+  <resultMap id="BaseResultMap" type="cn.edu.gdin.po.Custody" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_account" property="userAccount" jdbcType="VARCHAR" />
+    <result column="collection_time" property="collectionTime" jdbcType="TIMESTAMP" />
+    <result column="heart_rate" property="heartRate" jdbcType="INTEGER" />
+    <result column="systolic_pressure" property="systolicPressure" jdbcType="INTEGER" />
+    <result column="diastolic_pressur" property="diastolicPressur" jdbcType="INTEGER" />
+    <result column="temperature" property="temperature" jdbcType="REAL" />
+    <result column="blood_oxygen" property="bloodOxygen" jdbcType="REAL" />
+    <result column="uv_index" property="uvIndex" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, user_account, collection_time, heart_rate, systolic_pressure, diastolic_pressur, 
+    temperature, blood_oxygen, uv_index
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.edu.gdin.po.CustodyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from custody
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from custody
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from custody
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.edu.gdin.po.CustodyExample" >
+    delete from custody
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.edu.gdin.po.Custody" >
+    insert into custody (id, user_account, collection_time, 
+      heart_rate, systolic_pressure, diastolic_pressur, 
+      temperature, blood_oxygen, uv_index
+      )
+    values (#{id,jdbcType=INTEGER}, #{userAccount,jdbcType=VARCHAR}, #{collectionTime,jdbcType=TIMESTAMP}, 
+      #{heartRate,jdbcType=INTEGER}, #{systolicPressure,jdbcType=INTEGER}, #{diastolicPressur,jdbcType=INTEGER}, 
+      #{temperature,jdbcType=REAL}, #{bloodOxygen,jdbcType=REAL}, #{uvIndex,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.gdin.po.Custody" >
+    insert into custody
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userAccount != null" >
+        user_account,
+      </if>
+      <if test="collectionTime != null" >
+        collection_time,
+      </if>
+      <if test="heartRate != null" >
+        heart_rate,
+      </if>
+      <if test="systolicPressure != null" >
+        systolic_pressure,
+      </if>
+      <if test="diastolicPressur != null" >
+        diastolic_pressur,
+      </if>
+      <if test="temperature != null" >
+        temperature,
+      </if>
+      <if test="bloodOxygen != null" >
+        blood_oxygen,
+      </if>
+      <if test="uvIndex != null" >
+        uv_index,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userAccount != null" >
+        #{userAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="collectionTime != null" >
+        #{collectionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="heartRate != null" >
+        #{heartRate,jdbcType=INTEGER},
+      </if>
+      <if test="systolicPressure != null" >
+        #{systolicPressure,jdbcType=INTEGER},
+      </if>
+      <if test="diastolicPressur != null" >
+        #{diastolicPressur,jdbcType=INTEGER},
+      </if>
+      <if test="temperature != null" >
+        #{temperature,jdbcType=REAL},
+      </if>
+      <if test="bloodOxygen != null" >
+        #{bloodOxygen,jdbcType=REAL},
+      </if>
+      <if test="uvIndex != null" >
+        #{uvIndex,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.edu.gdin.po.CustodyExample" resultType="java.lang.Integer" >
+    select count(*) from custody
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+
+  <update id="updateByExampleSelective" parameterType="map" >
+    update custody
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.userAccount != null" >
+        user_account = #{record.userAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.collectionTime != null" >
+        collection_time = #{record.collectionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.heartRate != null" >
+        heart_rate = #{record.heartRate,jdbcType=INTEGER},
+      </if>
+      <if test="record.systolicPressure != null" >
+        systolic_pressure = #{record.systolicPressure,jdbcType=INTEGER},
+      </if>
+      <if test="record.diastolicPressur != null" >
+        diastolic_pressur = #{record.diastolicPressur,jdbcType=INTEGER},
+      </if>
+      <if test="record.temperature != null" >
+        temperature = #{record.temperature,jdbcType=REAL},
+      </if>
+      <if test="record.bloodOxygen != null" >
+        blood_oxygen = #{record.bloodOxygen,jdbcType=REAL},
+      </if>
+      <if test="record.uvIndex != null" >
+        uv_index = #{record.uvIndex,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update custody
+    set id = #{record.id,jdbcType=INTEGER},
+      user_account = #{record.userAccount,jdbcType=VARCHAR},
+      collection_time = #{record.collectionTime,jdbcType=TIMESTAMP},
+      heart_rate = #{record.heartRate,jdbcType=INTEGER},
+      systolic_pressure = #{record.systolicPressure,jdbcType=INTEGER},
+      diastolic_pressur = #{record.diastolicPressur,jdbcType=INTEGER},
+      temperature = #{record.temperature,jdbcType=REAL},
+      blood_oxygen = #{record.bloodOxygen,jdbcType=REAL},
+      uv_index = #{record.uvIndex,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.gdin.po.Custody" >
+    update custody
+    <set >
+      <if test="userAccount != null" >
+        user_account = #{userAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="collectionTime != null" >
+        collection_time = #{collectionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="heartRate != null" >
+        heart_rate = #{heartRate,jdbcType=INTEGER},
+      </if>
+      <if test="systolicPressure != null" >
+        systolic_pressure = #{systolicPressure,jdbcType=INTEGER},
+      </if>
+      <if test="diastolicPressur != null" >
+        diastolic_pressur = #{diastolicPressur,jdbcType=INTEGER},
+      </if>
+      <if test="temperature != null" >
+        temperature = #{temperature,jdbcType=REAL},
+      </if>
+      <if test="bloodOxygen != null" >
+        blood_oxygen = #{bloodOxygen,jdbcType=REAL},
+      </if>
+      <if test="uvIndex != null" >
+        uv_index = #{uvIndex,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.gdin.po.Custody" >
+    update custody
+    set user_account = #{userAccount,jdbcType=VARCHAR},
+      collection_time = #{collectionTime,jdbcType=TIMESTAMP},
+      heart_rate = #{heartRate,jdbcType=INTEGER},
+      systolic_pressure = #{systolicPressure,jdbcType=INTEGER},
+      diastolic_pressur = #{diastolicPressur,jdbcType=INTEGER},
+      temperature = #{temperature,jdbcType=REAL},
+      blood_oxygen = #{bloodOxygen,jdbcType=REAL},
+      uv_index = #{uvIndex,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  <!-- 通过UserAccount查询所有监控信息 -->
+  <select id="selectCustodyByUserAccount" resultType="cn.edu.gdin.po.Custody">
+  		select * from custody where user_account=#{userAccount}
+  </select>
+  <!-- 通过UserAccount查询最新监控信息 -->
+  <select id="queryMaxTime" resultType="cn.edu.gdin.po.Custody">
+  	select 
+  		temp.* 
+  	from 
+  	(select * from custody where user_account=#{custodyId}) temp ORDER BY collection_time DESC limit 1
+  </select>
+  
+  <!-- 通过UserAccount分页查询所有监护信息 2.26更新-->
+  <select id="findCustodyByUserAccount" resultType="Custody" parameterType="map">
+  		select * from custody where user_account=#{userAccount}
+  		ORDER BY collection_time DESC 
+ 		limit #{pageOffset},#{pageSize}
+  </select>
+  <!-- 查询所有监控信息总数，用于分页 -->
+  <select id="findCount" resultType="int" parameterType="map">
+ 		select count(*) from custody where user_account=#{userAccount}
+ </select>
+<!-- 3.3更新 获取所有用户最新监护数据信息 用于前台展示 -->
+  <select id="findAllCustodydatas" resultType="Custody" parameterType="map">
+  		select 
+  		a.* from custody a 
+		where not exists(select 1 
+		                  from custody b
+		                  where b.user_account=a.user_account and b.collection_time>a.collection_time)
+		limit #{pageOffset},#{pageSize}
+  </select>
+ <select id="findAllCount" resultType="int" >
+ 		select 
+ 		count(*) from custody a
+ 		where not exists(select 1 
+		                  from custody b
+		                  where b.user_account=a.user_account and b.collection_time>a.collection_time) 
+ </select>
+</mapper>

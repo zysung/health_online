@@ -1,0 +1,189 @@
+@charset "utf-8";
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,p,form,input,button,textarea,th,td{margin:0;padding:0;}
+	body{
+		height:735px;	
+		overflow-x: hidden;
+		-webkit-text-size-adjust:none;
+		font-size: 62.5%;
+		background:#f8f7f5;
+		font-family:'Microsoft Yahei','Simsun';
+	}
+	a{text-decoration:none;font-size: 14px;}
+	a:visited,a:hover{
+		text-decoration: none;
+	}
+/*顶部*/
+.top_pad{
+	    background-color:#29B6F6;
+		color:#ffffff;
+		line-height:45px;
+		height: 45px;
+		display:-webkit-flex;
+	}
+.top_left{
+	position:absolute;
+	float:left;
+	}
+.top_left a{
+	font-size: 19px;
+	color:#ffffff;
+	padding-left:10px;
+	padding-bottom:10px;
+	}
+.top_right{
+	position:absolute;
+	float:right;
+	margin:0px auto auto 75%;
+	padding:0px 0px;
+	}
+.top_right a{
+	font-size:10px;
+	color:#ffffff;
+	line-height:10px;
+	text-align:center;	
+	}
+.top_right .publish{
+	position:relative;
+	float:right;
+	margin:0px 10px auto auto;
+	padding-top:10px;
+	width:30px;
+	height:100%;
+	line-height:15px;
+	text-align:center;
+	}
+.top_right .account{
+	position:relative;
+	float:right;
+	margin:0px 15px auto auto;
+	padding-top:10px;
+	width:30px;
+	height:100%;
+	line-height:15px;
+	text-align:center;
+	}
+	
+/*轮播图片*/
+ol, ul { list-style: none; }
+.show_goods{
+	overflow: hidden; position: relative; z-index: 1
+	}
+.show_goods ul { -webkit-padding-start: 0px; }
+.show_goods ul li img { width: 100%; }
+.show_goods>ol { height: 26px; position: relative; z-index: 10; margin-top: -26px; text-align: center; padding-right: 15px; background-color: #000000; opacity: 0.5 }
+.show_goods>ol>li { display: inline-block; margin: 7px 0; width: 10px; height: 10px; background-color: #FFFFFF; border-radius: 10px; }
+.show_goods>ol>li.on { background-color: #edc700; }
+
+/*宝贝售卖详情*/
+.goods_information{
+	background:#fff;
+	width:100%;
+	height:110px;
+	padding:10px;
+	font-size:12px;
+	}
+.goods_information .title strong{
+	color:#000;
+	font-size:18px;
+	font-weight:bold;
+	}
+.goods_information .title .collection{
+	margin-left:50px;
+	width:30px;
+	height:100%;
+/*	border-left:1px solid thin #000;*/
+	}
+.goods_information .price{
+	color:#29B6F6;
+	font-size:20px;
+	font-weight:bold;
+	line-height:40px;
+	}
+.goods_information .look_num{
+	margin-left:75px;
+	margin-right:75px;
+	}
+/*卖家信息*/	
+.dl_title{
+	margin:7px;
+	font-size:13px;
+	}
+.seller_img{
+	float:left;
+	position:absolute;
+	margin-left:10px;
+	margin-top:3%;	
+	border-radius:3rem;
+	background:#eee;
+	width:30px;
+	height:30px;
+	align:center;
+	text-align:center;
+	}
+.seller_name{
+	float:left;
+	position:absolute;
+	margin-left:50px;
+	margin-top:3%;	
+	color:#000;
+	font-size:18px;
+	font-weight:normal;
+	}
+.seller_informaion{
+	background-color:#fff;
+	width:100%;
+	height:130px;
+	font-size:12px;	
+	}
+.infor1{
+	position:absolute;
+	text-align:center;
+	margin-top:50px;
+	width:100%;
+	border-bottom:1px #eee solid;
+	padding-bottom:5px;
+	font-size:12px;
+	}
+.set_time,.del_card,.all_baby{
+	position:relative;
+	float:left;
+	width:33.3%;
+	font-size:12px;
+	}
+.set_time,.del_card{
+	border-right:#eee solid 1px;
+	}
+.infor2{
+	position:absolute;
+	text-align:center;
+	margin-top:90px;
+	width:100%;
+	}
+.infor2 div{
+	color:#29B6F6;
+	font-size:20px;
+	font-weight:normal;
+	line-height:40px;
+	width:50%;
+	text-align:center;
+	}
+.view_comments,.call_phone{
+	position:relative;
+	float:left;
+	}
+.call_phone{
+	border-left:#eee solid 1px;	
+	}		
+/*详细描述*/	
+.elaborate{
+	background-color:#fff;
+	color:#000;
+	font-size:15px;
+	padding:10px;
+	width:100%;
+	height:150px;
+	}	
+	
+	
+	
+	

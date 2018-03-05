@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+
+	<!-- 配置spring容器监听器 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:spring/applicationContext-*.xml</param-value>
+	</context-param>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+
+	<!-- 編碼過濾器 -->
+	 <filter>
+      <filter-name>encodingFilter</filter-name>
+      <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+      <init-param>
+        <param-name>encoding</param-name>
+        <param-value>UTF-8</param-value>
+      </init-param>
+      <init-param>
+        <param-name>forceEncoding</param-name>
+        <param-value>true</param-value>
+      </init-param>
+    </filter>
+    <filter-mapping>
+      <filter-name>encodingFilter</filter-name>
+      <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+	<!-- 配置核心控制器 -->
+	<servlet>
+		<servlet-name>dispatcherServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:spring/springmvc.xml</param-value>
+		</init-param>
+	</servlet>
+
+
+	<!-- springmvc拦截器 -->
+	<servlet-mapping>
+		<servlet-name>dispatcherServlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<!-- 更新：sitemash前端框架 -->
+	<filter>
+		<filter-name>sitemesh</filter-name>
+		<filter-class>org.sitemesh.config.ConfigurableSiteMeshFilter </filter-class>
+		<init-param>
+			<param-name>configFile</param-name>
+			<param-value>/WEB-INF/sitemesh3.xml</param-value>
+		</init-param>
+
+		作者：jnil
+		链接：https://www.jianshu.com/p/72dd45242568
+		來源：简书
+		著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+	</filter>
+	<filter-mapping>
+		<filter-name>sitemesh</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+  <!-- 更新：分页过滤器 -->
+	<filter>
+    <filter-name>SystemContextFilter</filter-name>
+    <filter-class>cn.edu.gdin.filter.SystemContextFilter</filter-class>
+	  </filter>
+	  <filter-mapping>
+		<filter-name>SystemContextFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	  </filter-mapping>
+  <!--更新：后台登录过滤器  检查session-->
+  <filter>
+		<filter-name>adminFilter</filter-name>
+		<filter-class>cn.edu.gdin.filter.AdminFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>adminFilter</filter-name>
+		<url-pattern>/back/*</url-pattern>
+   </filter-mapping>
+   
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>

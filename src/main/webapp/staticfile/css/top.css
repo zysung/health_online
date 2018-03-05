@@ -1,0 +1,97 @@
+	.top{
+		background-color:#29B6F6;
+		color:#ffffff;
+		font-size: 16px;
+		line-height:45px;
+		height: 45px;
+		display:-webkit-flex;
+	}
+	
+	.schoolselect{
+    	height: 45px;
+    	line-height: 45px;
+    	width: 30%;
+   		padding-left: 10px;
+    	color: #fff;
+    	font-size: 1.6rem;
+    	font-weight: 200;
+		text-decoration:none;
+	}
+	.schoolselect:hover,.schoolselect:visited{
+		text-decoration:none;
+		color:#fff;
+		background-coloc: #ececec;
+		outline:0;
+	}
+	.schoolselect img{
+		width:1.2rem;
+		height:1.2rem;
+		margin-left:5px;
+		margin-bottom:5px;
+	}
+	.top ul{
+		margin:0;
+		padding:0;
+		text-decoration:none;
+		width:30%;
+		height:150px;
+		flex-direction:column;
+		background:#ffffff;
+		position:absolute;
+		top:45px;
+	}
+	.top ul li{
+		text-decoration:none;
+		text-align:center;
+		margin:0;
+		padding:0;
+		height:33.33%;
+		border-bottom:1px grey solid;
+	}
+	.dropdown-menu a{
+		position:relative;
+		top:10px;
+		font-size:16px;
+		text-align:center;		
+	}
+	.search{
+		width:30%;
+		text-align: right;
+		padding-right:10px;
+		padding-bottom:10px;
+		height:45px;
+		background:transparent;
+		border:0;
+	}
+	.search img{
+		width:1.8rem;
+		height:1.8rem;
+	}
+	
+	.search_pad{
+		height: 100%;
+		width: 100%;
+		background-color: #ffffff;
+		display: none;
+		z-index: 100;
+	}
+	.search_pad .top input{
+		flex: 270;
+		margin: 5px;
+		font-style:normal;
+	}
+	.search_pad .top button{
+		flex: 55;
+		background-color: #29b6f6;
+		border: 0;
+	}
+	.search_pad .top .back{
+		flex: 45;
+	}
+	.top h1 {
+		width: 40%;
+		line-height:45px;
+		text-align:center;
+		font-size: 1.6rem;
+		color:#fff;
+	}

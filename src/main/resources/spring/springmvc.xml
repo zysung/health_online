@@ -1,0 +1,80 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-3.2.xsd  ">
+
+	<!-- 使用spring组件扫描 -->
+	<context:component-scan base-package="cn.edu.gdin.controller" />
+
+	<!-- 通过annotation-driven可以替代下边的处理器映射器和适配器 -->
+	<!--<mvc:annotation-driven conversion-service="conversionService"> </mvc:annotation-driven>   -->
+
+	<!-- 注解处理器映射器 -->
+	<bean
+		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+	</bean>
+
+
+	<!-- 注解适配器 -->
+	<bean
+		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<!-- 在webBindingInitializer中注入自定义属性编辑器、自定义转换器 -->
+		<property name="webBindingInitializer" ref="customBinder"></property>
+		
+		<!-- 加入 json数据的消息转换器 MappingJacksonHttpMessageConverter依赖Jackson的包 -->
+		<property name="messageConverters">
+			<list>
+				<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"></bean>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 配置视图解析器 要求将jstl的包加到classpath -->
+	<!-- ViewResolver -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	<!-- 文件上传 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 设置上传文件的最大尺寸为5MB -->
+		<property name="maxUploadSize" value="52428800"></property>
+	</bean>
+	
+	<!-- 自定义webBinder -->
+	<bean id="customBinder"
+		class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer">
+		<!-- 使用converter进行参数转 -->
+		<property name="conversionService" ref="conversionService" />
+	</bean>
+
+	<!-- 转换器 -->
+	<bean id="conversionService"
+		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<property name="converters">
+			<list>
+				<!-- <bean class="cn.edu.gdin.controller.converter.CustomDateConverter" /> -->
+				<bean class="cn.edu.gdin.controller.converter.StringTrimConverter" />
+			</list>
+		</property>
+	</bean>
+	<!-- 异常映射 -->
+	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="java.lang.Exception">error</prop>
+			</props>
+		</property>
+	</bean>
+	
+		<!-- 将静态文件（css等）指定到某个特殊文件夹中统一处理 -->	
+	<mvc:resources location="/staticfile/" mapping="/staticfile/**"/><!-- 处理文件夹中所有子文件夹的内容 -->
+</beans>

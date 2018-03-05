@@ -1,0 +1,55 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,p,form,input,button,textarea,th,td{margin:0;padding:0;}
+	body{
+		display:-webkit-flex;
+		flex-direction:column;
+		overflow-x: hidden;
+		-webkit-text-size-adjust:none;
+		font-size:62.5%;
+		font-family:'Microsoft Yahei','Simsun';	
+		background-color:#ebebeb;
+	}
+	#top{
+		color:#ffffff;
+		font-size: 16px;
+		font-weight: bold;
+		line-height:45px;
+		background-color:#29b6f6;
+	}
+	#top h1 {
+		width: 100%;
+		line-height:45px;
+		text-align:center;
+		font-size: 1.6rem;
+		color:#fff;
+	}
+	#content{
+		flex:557;
+		font-size:16px;
+	}
+	#content form{
+		margin-left:40px;
+		margin-right:40px;	
+	}
+	#content p{
+		margin-left:40px;
+		margin-top:50px;	
+	}
+	#content input{
+		padding:10px;
+		width:100%;
+		font-size:1.4rem;
+		height:50px;
+		margin-top:20px;
+		border:1px solid #888888;
+		border-radius:5px;
+		box-shadow:none;	
+	}
+	
+	#content button{
+		width:90%;
+		margin-left:5%;
+		margin-top:10px;
+		height:40px;
+		border:0;
+		border-radius:20px;
+	}

@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.gdin.mapper.SportdataMapper" >
+  <resultMap id="BaseResultMap" type="cn.edu.gdin.po.Sportdata" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_account" property="userAccount" jdbcType="VARCHAR" />
+    <result column="collection_time" property="collectionTime" jdbcType="TIMESTAMP" />
+    <result column="step" property="step" jdbcType="INTEGER" />
+    <result column="kilometers" property="kilometers" jdbcType="INTEGER" />
+    <result column="light_sleep" property="lightSleep" jdbcType="SMALLINT" />
+    <result column="deep_sleep" property="deepSleep" jdbcType="SMALLINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, user_account, collection_time, step, kilometers, light_sleep, deep_sleep
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.edu.gdin.po.SportdataExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sportdata
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sportdata
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sportdata
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.edu.gdin.po.SportdataExample" >
+    delete from sportdata
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.edu.gdin.po.Sportdata" >
+    insert into sportdata (id, user_account, collection_time, 
+      step, kilometers, light_sleep, 
+      deep_sleep)
+    values (#{id,jdbcType=INTEGER}, #{userAccount,jdbcType=VARCHAR}, #{collectionTime,jdbcType=TIMESTAMP}, 
+      #{step,jdbcType=INTEGER}, #{kilometers,jdbcType=INTEGER}, #{lightSleep,jdbcType=SMALLINT}, 
+      #{deepSleep,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.gdin.po.Sportdata" >
+    insert into sportdata
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userAccount != null" >
+        user_account,
+      </if>
+      <if test="collectionTime != null" >
+        collection_time,
+      </if>
+      <if test="step != null" >
+        step,
+      </if>
+      <if test="kilometers != null" >
+        kilometers,
+      </if>
+      <if test="lightSleep != null" >
+        light_sleep,
+      </if>
+      <if test="deepSleep != null" >
+        deep_sleep,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userAccount != null" >
+        #{userAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="collectionTime != null" >
+        #{collectionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="step != null" >
+        #{step,jdbcType=INTEGER},
+      </if>
+      <if test="kilometers != null" >
+        #{kilometers,jdbcType=INTEGER},
+      </if>
+      <if test="lightSleep != null" >
+        #{lightSleep,jdbcType=SMALLINT},
+      </if>
+      <if test="deepSleep != null" >
+        #{deepSleep,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.edu.gdin.po.SportdataExample" resultType="java.lang.Integer" >
+    select count(*) from sportdata
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sportdata
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.userAccount != null" >
+        user_account = #{record.userAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.collectionTime != null" >
+        collection_time = #{record.collectionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.step != null" >
+        step = #{record.step,jdbcType=INTEGER},
+      </if>
+      <if test="record.kilometers != null" >
+        kilometers = #{record.kilometers,jdbcType=INTEGER},
+      </if>
+      <if test="record.lightSleep != null" >
+        light_sleep = #{record.lightSleep,jdbcType=SMALLINT},
+      </if>
+      <if test="record.deepSleep != null" >
+        deep_sleep = #{record.deepSleep,jdbcType=SMALLINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sportdata
+    set id = #{record.id,jdbcType=INTEGER},
+      user_account = #{record.userAccount,jdbcType=VARCHAR},
+      collection_time = #{record.collectionTime,jdbcType=TIMESTAMP},
+      step = #{record.step,jdbcType=INTEGER},
+      kilometers = #{record.kilometers,jdbcType=INTEGER},
+      light_sleep = #{record.lightSleep,jdbcType=SMALLINT},
+      deep_sleep = #{record.deepSleep,jdbcType=SMALLINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.gdin.po.Sportdata" >
+    update sportdata
+    <set >
+      <if test="userAccount != null" >
+        user_account = #{userAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="collectionTime != null" >
+        collection_time = #{collectionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="step != null" >
+        step = #{step,jdbcType=INTEGER},
+      </if>
+      <if test="kilometers != null" >
+        kilometers = #{kilometers,jdbcType=INTEGER},
+      </if>
+      <if test="lightSleep != null" >
+        light_sleep = #{lightSleep,jdbcType=SMALLINT},
+      </if>
+      <if test="deepSleep != null" >
+        deep_sleep = #{deepSleep,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.gdin.po.Sportdata" >
+    update sportdata
+    set user_account = #{userAccount,jdbcType=VARCHAR},
+      collection_time = #{collectionTime,jdbcType=TIMESTAMP},
+      step = #{step,jdbcType=INTEGER},
+      kilometers = #{kilometers,jdbcType=INTEGER},
+      light_sleep = #{lightSleep,jdbcType=SMALLINT},
+      deep_sleep = #{deepSleep,jdbcType=SMALLINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 通过UserAccount查询最新运动信息 取出该用户的所有信息  再筛选 -->
+  <select id="selectSportdataByUserAccount1" resultType="cn.edu.gdin.po.Sportdata">
+  		select * from sportdata where user_account=#{userAccount}
+  </select>
+  
+  <!-- 通过UserAccount查询最新运动信息  直接在sql中拼接子查询-->
+  <select id="selectSportdataByUserAccount" resultType="cn.edu.gdin.po.Sportdata">
+	select 
+		temp.* from (select * from sportdata where user_account=#{userAccount}) temp
+ 	ORDER BY collection_time desc limit 1
+  </select>
+  <!-- 通过UserAccount分页查询所有运动信息 2.25更新-->
+  <select id="findSportdataByUserAccount" resultType="cn.edu.gdin.po.Sportdata" parameterType="map">
+  		select * from sportdata where user_account=#{userAccount}
+ 		limit #{pageOffset},#{pageSize}
+  </select>
+  <!-- 更新 -->
+ <select id="findCount" resultType="int" parameterType="map">
+ 		select count(*) from sportdata where user_account=#{userAccount}
+ </select>
+ <!-- 3.3更新 获取所有用户最新运动数据信息 用于前台展示 -->
+  <select id="findAllSportdatas" resultType="Sportdata" parameterType="map">
+  		select 
+  		a.* from sportdata a 
+		where not exists(select 1 
+		                  from sportdata b
+		                  where b.user_account=a.user_account and b.collection_time>a.collection_time)
+		limit #{pageOffset},#{pageSize}
+  </select>
+ <select id="findAllCount" resultType="int" >
+ 		select 
+ 		count(*) from sportdata a
+ 		where not exists(select 1 
+		                  from sportdata b
+		                  where b.user_account=a.user_account and b.collection_time>a.collection_time) 
+ </select>
+ 
+</mapper>

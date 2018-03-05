@@ -1,0 +1,16 @@
+@CHARSET "UTF-8";
+.content{
+
+	margin-left:2px;
+}
+.header{
+		height:150px;
+		margin-bottom:10px;
+		color:#ffffff;
+		font:30px;
+	}
+	.navbar{
+		font-size:16px;
+		border-radius:0;
+		margin-bottom:10px;
+	}

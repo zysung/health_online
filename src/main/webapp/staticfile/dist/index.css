@@ -1,0 +1,82 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,p,form,input,button,textarea,th,td{margin:0;padding:0;}
+	body{
+		height:735px;
+		border:1px #eee solid;	
+		overflow-x: hidden;
+		-webkit-text-size-adjust:none;
+		font-size: 62.5%;
+		background:#f8f7f5;
+		font-family:'Microsoft Yahei','Simsun';
+	}
+	a{text-decoration:none;font-size: 14px;}
+	a:visited,a:hover{
+		text-decoration: none;
+	}
+
+	.button_bar{
+		margin-left:18px;
+		margin-right:18px;
+		height: 40px;
+		margin-bottom: 10px;
+		display:-webkit-flex
+	}
+	.button_bar a{
+		flex: 1;
+		background-color:#ffffff;
+		color: #101010;
+		font-size:1.4rem;
+		border:0;
+		vertical-align:middle;
+		text-decoration:none;
+		text-align:center;
+		line-height:40px;
+	}
+	#personcenter img{
+		width:1.8rem;
+		height:1.8rem;
+		vertical-align:middle;
+		margin:0 2px 5px 0;
+	}
+	#publish img{
+		width:2rem;
+		height:1.9rem;
+		vertical-align:middle;
+		margin:0 2px 3px 0;
+	}
+
+
+
+	.info_list_three{
+		border-top: 1px #eee solid;
+	}
+
+
+	.list_info li{
+		height: 100px;
+		width: 100%;
+		border-bottom: 1px #eee solid;
+		background-color: #ffffff;
+		padding:0 15px 0 15px;
+		text-decoration: none;
+	}
+	.list_info a{
+		color: #101010;
+	}
+	.list_info .title{
+		font-size: 1.6rem;
+	}
+	.list_info .title .img_num{
+		float: right;	
+	}
+	.list_info .attr{
+		font-size: 1.2rem;
+	}
+	.list_info .price{
+		font-size: 2rem;
+		color: #29b6f6;
+	}
+
+
+	.endbar{
+		flex: 150;
+	}

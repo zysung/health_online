@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemesh>
+<!--register页面的装饰页面为没有菜单栏 的registerDecorator.jsp -->
+    <mapping path="/back/*" decorator="/WEB-INF/decorators/main.jsp" />
+    <mapping path="/showdatas/*" decorator="/WEB-INF/decorators/showdatas.jsp" />
+</sitemesh>

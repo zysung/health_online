@@ -1,0 +1,12 @@
+.main_visual{height:100px;border-top:1px solid #d7d7d7;overflow:hidden;position:relative; margin:13px 0 13px 0;}
+.main_image{height:100px;overflow:hidden;position:relative;}
+.main_image ul{width:9999px;height:100px;overflow:hidden;position:absolute;top:0;left:0}
+.main_image li{float:left;width:100%;height:100px;}
+
+
+div.flicking_con{position:absolute;top:80px;left:50%;z-index:999;width:300px;height:21px;margin:0 0 0 -50px;}
+div.flicking_con a{float:left;width:21px;height:21px;margin:0;padding:0;background:url(../img/images/btn_main_img.png) 0 0 no-repeat;display:block;text-indent:-1000px}
+div.flicking_con a.on{background-position:0 -21px}
+#btn_prev,#btn_next{z-index:11111;position:absolute;display:block;width:73px!important;height:73px!important;top:50%;margin-top:-37px;display:none;}
+#btn_prev{background:url(../img/images/hover_left.png) no-repeat left top;left:5%;}
+#btn_next{background:url(../img/images/hover_right.png) no-repeat right top;right:5%;}
