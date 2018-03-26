@@ -4,6 +4,7 @@ import cn.edu.gdin.po.Role;
 import cn.edu.gdin.po.User;
 import cn.edu.gdin.service.RoleService;
 import cn.edu.gdin.service.UserService;
+import cn.edu.gdin.util.MD5;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -58,11 +59,15 @@ public class LoginRealm extends AuthorizingRealm{
         if (user == null) {
             //没有该用户名
             throw new UnknownAccountException();
-        } else if (!password.equals(user.getPassword())) {
-            System.out.println(password);
-            System.out.println(user.getPassword());
-            //密码错误
-            throw new IncorrectCredentialsException();
+        } else {
+            try {
+                if (!MD5.getMD5(password).equals(user.getPassword())) {
+                    //密码错误
+                    throw new IncorrectCredentialsException();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         AuthenticationInfo info = new SimpleAuthenticationInfo(userAccount,password,getName());
 

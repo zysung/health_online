@@ -90,7 +90,7 @@
         	</ul>
         	<ul class="nav navbar-nav navbar-right">
       			<li><a href="www.baidu.com">关于我们</a></li>
-      			<li><a>当前管理员:${loginAdmin.account}</a></li>
+      			<li><a>当前管理员:${loginAdmin.account}[${role.roleName}]</a></li>
       			<li>	<a href="<%=request.getContextPath()%>/admin/logout" style="color:red;">退出登录</a></li>
             </ul>
         </div>

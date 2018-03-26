@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import cn.edu.gdin.po.User;
+import cn.edu.gdin.service.RoleService;
 import cn.edu.gdin.service.UserService;
 import cn.edu.gdin.util.MD5;
 import org.apache.shiro.SecurityUtils;
@@ -22,11 +23,14 @@ import cn.edu.gdin.po.Admin;
 
 @Controller
 @RequestMapping("/admin") //url为   项目名/admin/*
-@SessionAttributes("loginAdmin")
+@SessionAttributes(names = {"loginAdmin","role"})
 public class LoginController {
 	
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private RoleService roleService;
+
 //	private AdminService adminService;
 	/*
 	 *后台登录页面
@@ -51,7 +55,7 @@ public class LoginController {
 		//shiro实现用户登陆
 		UsernamePasswordToken token = null;
 		try {
-			token = new UsernamePasswordToken(adminname, MD5.getMD5(password));
+			token = new UsernamePasswordToken(adminname,password);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -61,6 +65,7 @@ public class LoginController {
 		User u  = userService.loadUser(adminname);
 		if(u!=null){
 			model.addAttribute("loginAdmin",u);
+			model.addAttribute("role",roleService.findByUserAccount(u.getAccount()));
 		}
 
 		if(subject.hasRole("admin")){
