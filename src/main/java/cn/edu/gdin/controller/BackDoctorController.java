@@ -16,7 +16,7 @@ import cn.edu.gdin.po.Doctor;
 import cn.edu.gdin.service.DoctorService;
 
 @Controller
-@RequestMapping(value="/back/doctor")
+@RequestMapping(value="/back/hospital/doctor")
 public class BackDoctorController {
 	
 	@Autowired
@@ -26,7 +26,7 @@ public class BackDoctorController {
 	public String findDoctors(String condition,Model model){
 		model.addAttribute("pager", doctorService.findDoctorsByCondition(condition));
 		model.addAttribute("condition", condition);
-		return "doctor/doctors";
+		return "back/doctor/doctors";
 	}
 	/**
 	 * 5.9更新，医生详情、更新、删除
@@ -37,23 +37,33 @@ public class BackDoctorController {
 		if(doctor!=null){
 			doctorService.delete(id);
 		}
-		return  "redirect:/back/doctor/doctors";
+		return  "redirect:/back/hospital/doctor/doctors";
 	}
 	
 	@RequestMapping(value="/{id}/update",method=RequestMethod.GET)
 	public String update(Model model,@PathVariable int id){
 		model.addAttribute("doctor", doctorService.load(id));
-		return "doctor/update";
+		return "back/doctor/update";
 	}
 	@RequestMapping(value="/{id}/update",method=RequestMethod.POST)
 	public String update(Doctor doctor,@RequestParam String uploadImg){
 		doctorService.update(doctor, uploadImg);
-		return "redirect:/back/doctor/doctors";
+		return "redirect:/back/hospital/doctor/doctors";
+	}
+	@RequestMapping(value="/add",method=RequestMethod.GET)
+	public String add(Doctor doctor,Model model){
+		model.addAttribute("doctor", new Doctor());
+		return "back/doctor/add";
+	}
+	@RequestMapping(value="/add",method=RequestMethod.POST)
+	public String add(Doctor doctor,@RequestParam String uploadImg) throws IOException{
+		doctorService.add(doctor,uploadImg);
+		return "redirect:/back/hospital/hospitals";
 	}
 	/**
 	 * 4.9更新，医生头像读取
 	 * @param response
-	 * @param account
+	 * @param
 	 */
 	@RequestMapping(value="{id}/avatar",method=RequestMethod.GET)
 	public void readLogo(HttpServletResponse response,@PathVariable int id,Model model){

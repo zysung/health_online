@@ -37,7 +37,7 @@
   					<td>${latestCustodyData.temperature}</td>
   					<td>${latestCustodyData.bloodOxygen}</td>
   					<td>${latestCustodyData.uvIndex}</td>
-  					<td><a href="<%=request.getContextPath() %>/back/${user.account}/custodydatas" >查看所有运动数据</a></td>
+  					<td><a href="<%=request.getContextPath() %>/back/data/${user.account}/custodydatas" >查看所有运动数据</a></td>
   				</tr>
   			</c:otherwise>
   		</c:choose>

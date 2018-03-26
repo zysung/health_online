@@ -20,8 +20,6 @@ public interface SportdataService {
     ResponseData sportdataDown(String userAccount)throws Exception;
     //获取用户全部运动信息
     List<Sportdata> sportdataDownList(String userAccount);
-    //分页获取用户全部运动信息
-    Pager<Sportdata> findSportdatas(String userAccount);
     //3.3更新 获取所有用户运动信息，用于前台展示
     Pager<Sportdata> findAllSportdatas();
 }

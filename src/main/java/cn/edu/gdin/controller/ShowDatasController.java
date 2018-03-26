@@ -46,7 +46,7 @@ public class ShowDatasController {
      */
     @RequestMapping(value="/{account}/usersportdatas",method=RequestMethod.GET)
 	public String findSportDatas(@PathVariable String account,Model model) throws Exception{
-		model.addAttribute("pager",sportdataService.findSportdatas(account));
+		model.addAttribute("pager",sportdataService.sportdataDownList(account));
 		model.addAttribute("user", userService.loadUser(account));
 		return "showdatas/usersportdatas";
 	}

@@ -23,13 +23,13 @@
   			<td>紫外线指数(级)</td>
   			<td>操作</td>
   		</tr>
-  		<c:if test="${pager.total le 0 }">
+  		<c:if test="${page.getTotal() le 0 }">
   			<tr>
   				<td colspan="10">目前没有用户数据</td>
   			</tr>
   		</c:if>
-  		<c:if test="${pager.total gt 0}" >
-  			<c:forEach items="${pager.datas}" var="custodydata" varStatus="status">			
+  		<c:if test="${page.getTotal() gt 0}" >
+  			<c:forEach items="${page.list}" var="custodydata" varStatus="status">
   				<tr>
   					<td><fmt:formatDate value="${custodydata.collectionTime }" pattern="yyyy-MM-dd hh:mm:ss"/></td><!--输出在当页的序号  -->
   					<td>${custodydata.heartRate}</td>
@@ -38,16 +38,25 @@
   					<td>${custodydata.temperature}</td>
   					<td>${custodydata.bloodOxygen}</td>
   					<td>${custodydata.uvIndex}</td>
-  					<td><a href="<%=request.getContextPath() %>/back/${user.account}/latestcustodydata" >查看最新监护数据</a></td>
+  					<td><a href="<%=request.getContextPath() %>/back/data/${user.account}/latestcustodydata" >查看最新监护数据</a></td>
   				</tr>
   			</c:forEach>
  			<tr>
-				<td colspan="10" align="right">
-					<jsp:include page="/inc/pager.jsp">
-						<jsp:param value="custodydatas?" name="url"/>
-						<jsp:param value="${pager.total}" name="items"/>
-					</jsp:include>
-				</td>
+				<td colspan="12" align="right">
+					<ul class="pagination pagination-sm">
+						<li><a>共 ${page.total } 条记录</a></li>
+						<li><a>共 ${page.pages} 页</a></li>
+						<li><a>当前第 ${page.pageNum  } 页</a></li>
+						<li><a href="?page=1">首页</a></li>
+						<c:if test="${page.pageNum!= 1 }">
+							<li><a href="?page=${page.pageNum -1}">上一页</a></li>
+						</c:if>
+						<c:if test="${page.pageNum < page.pages }">
+							<li><a href="?page=${page.pageNum +1}">下一页</a></li>
+						</c:if>
+						<li><a href="?page=${page.pages}">尾页</a></li>
+					</ul>
+				<td/>
 			</tr>	
   		</c:if>
   	</table>

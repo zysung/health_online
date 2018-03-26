@@ -33,7 +33,7 @@
   					<td>${latestSportData.kilometers }</td>
   					<td>${latestSportData.lightSleep }</td>
   					<td>${latestSportData.deepSleep}</td>
-  					<td><a href="<%=request.getContextPath() %>/back/${user.account}/sportdatas" >查看所有运动数据</a></td>
+  					<td><a href="<%=request.getContextPath() %>/back/data/${user.account}/sportdatas" >查看所有运动数据</a></td>
   				</tr>
   			</c:otherwise>
   		</c:choose>

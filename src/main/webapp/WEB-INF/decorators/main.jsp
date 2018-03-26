@@ -90,7 +90,7 @@
         	</ul>
         	<ul class="nav navbar-nav navbar-right">
       			<li><a href="www.baidu.com">关于我们</a></li>
-      			<li><a>当前管理员:${loginAdmin.adminName}</a></li>
+      			<li><a>当前管理员:${loginAdmin.account}</a></li>
       			<li>	<a href="<%=request.getContextPath()%>/admin/logout" style="color:red;">退出登录</a></li>
             </ul>
         </div>
@@ -126,8 +126,8 @@
                 <div id="collapse2" class="panel-collapse collapse in">
                   <div class="panel-body">
                    	<ul>
-                  		<li style="border-bottom:1px solid #1cb394"><a href="<%=request.getContextPath()%>/back/userstosportdatas">运动数据</a></li>
-                        <li ><a href="<%=request.getContextPath()%>/back/userstocustodydatas">监护数据</a></li>
+                  		<li style="border-bottom:1px solid #1cb394"><a href="<%=request.getContextPath()%>/back/data/userstosportdatas">运动数据</a></li>
+                        <li ><a href="<%=request.getContextPath()%>/back/data/userstocustodydatas">监护数据</a></li>
                     </ul>      
                   </div>
                 </div>
@@ -144,7 +144,7 @@
                   <div class="panel-body">
                    	<ul>
                   		<li style="border-bottom:1px solid #1cb394"><a href="<%=request.getContextPath()%>/back/hospital/hospitals">医院资料</a></li>
-                        <li ><a href="<%=request.getContextPath()%>/back/doctor/doctors">在职医生资料</a></li>
+                        <li ><a href="<%=request.getContextPath()%>/back/hospital/doctor/doctors">在职医生资料</a></li>
                     </ul>      
                   </div>
                 </div>

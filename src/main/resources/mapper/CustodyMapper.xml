@@ -288,16 +288,12 @@
   	(select * from custody where user_account=#{custodyId}) temp ORDER BY collection_time DESC limit 1
   </select>
   
-  <!-- 通过UserAccount分页查询所有监护信息 2.26更新-->
-  <select id="findCustodyByUserAccount" resultType="Custody" parameterType="map">
+  <!-- 通过UserAccount查询所有监护信息 2.26更新-->
+  <select id="findCustodyByUserAccount" resultType="Custody" >
   		select * from custody where user_account=#{userAccount}
-  		ORDER BY collection_time DESC 
- 		limit #{pageOffset},#{pageSize}
+  		ORDER BY collection_time DESC
   </select>
-  <!-- 查询所有监控信息总数，用于分页 -->
-  <select id="findCount" resultType="int" parameterType="map">
- 		select count(*) from custody where user_account=#{userAccount}
- </select>
+
 <!-- 3.3更新 获取所有用户最新监护数据信息 用于前台展示 -->
   <select id="findAllCustodydatas" resultType="Custody" parameterType="map">
   		select 

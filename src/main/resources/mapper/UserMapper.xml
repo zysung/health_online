@@ -338,14 +338,10 @@
     where account = #{account,jdbcType=VARCHAR}
   </update>
   
-  <!-- 2.25更新 实现分页 -->
+
   <select id="findByCondition" resultType="User" parameterType="map">
   	select * from user
   	<if test="condition!=null">where (name like #{condition} or account like #{condition})</if>
-  	limit #{pageOffset},#{pageSize}
   </select>
-  <select id="findCount" resultType="int" parameterType="map">
-  	select count(*) from user
-  	<if test="condition!=null">where (name like #{condition} or account like #{condition})</if>
-  </select>
+
 </mapper>

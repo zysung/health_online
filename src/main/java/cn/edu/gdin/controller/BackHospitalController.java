@@ -38,7 +38,7 @@ public class BackHospitalController {
 	public String findHospitals(Model model,String condition){
 		model.addAttribute("pager",hospitalService.findHospitalsByCondition(condition));
 		model.addAttribute("condition", condition);
-		return "hospital/hospitals";
+		return "back/hospital/hospitals";
 	}
 	
 /*	@RequestMapping(value="/searchHospitals",method=RequestMethod.POST)
@@ -70,7 +70,7 @@ public class BackHospitalController {
 	@RequestMapping(value="/{id}/update",method=RequestMethod.GET)
 	public String update(Model model,@PathVariable int id){
 		model.addAttribute("hospital", hospitalService.load(id));
-		return "hospital/update";
+		return "back/hospital/update";
 	}
 	@RequestMapping(value="/{id}/update",method=RequestMethod.POST)
 	public String update(Hospital hospital,@RequestParam String uploadImg,HttpSession session){
@@ -89,7 +89,7 @@ public class BackHospitalController {
 	@RequestMapping(value="{id}/show",method=RequestMethod.GET)
 	public String show(@PathVariable int id,Model model){
 		model.addAttribute("hospital", hospitalService.load(id));
-		return "hospital/show";
+		return "back/hospital/show";
 	}
 	/**
 	 * 4.9更新，医院logo读取

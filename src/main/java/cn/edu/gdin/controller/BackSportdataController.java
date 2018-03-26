@@ -1,5 +1,10 @@
 package cn.edu.gdin.controller;
 
+import cn.edu.gdin.po.Sportdata;
+import cn.edu.gdin.po.User;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,13 +14,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import cn.edu.gdin.service.SportdataService;
 import cn.edu.gdin.service.UserService;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
+
 /**
  * 后台运动数据页面控制
  * @author zysung
  *	@date 2017年2月25日
  */
 @Controller
-@RequestMapping("/back")
+@RequestMapping("/back/data")
 public class BackSportdataController {
 
 	@Autowired
@@ -29,10 +38,16 @@ public class BackSportdataController {
 	 * @throws Exception
 	 */
     @RequestMapping(value="/userstosportdatas",method=RequestMethod.GET)
-    public String findSportDatasByUsers(Model model,String condition) throws Exception{
-    	model.addAttribute("pager",userService.findUsersByCondition(condition));
-    	model.addAttribute("condition", condition);
-		return "back/userstosportdatas";
+    public String findSportDatasByUsers(Model model,String condition,
+										@RequestParam(required = false,defaultValue ="1")Integer page,
+										@RequestParam(required = false,defaultValue = "6")Integer rows){
+
+		PageHelper.startPage(page,rows);
+		List<User> allList = userService.findUsersByCondition(condition);
+		PageInfo<User> p  = new PageInfo<User>(allList);
+		model.addAttribute("page",p);
+		model.addAttribute("condition", condition);
+		return "back/data/userstosportdatas";
 	}
     /**
      * 模糊查询
@@ -56,7 +71,7 @@ public class BackSportdataController {
 	public String getLatestSportData(@PathVariable String account,Model model) throws Exception{
 		model.addAttribute("latestSportData",sportdataService.sportdataDown(account).getData());
 		model.addAttribute("user", userService.loadUser(account));
-		return "back/latestsportdata";
+		return "back/data/latestsportdata";
 	}
     
     /**
@@ -67,10 +82,15 @@ public class BackSportdataController {
      * @throws Exception
      */
     @RequestMapping(value="/{account}/sportdatas",method=RequestMethod.GET)
-	public String findSportDatas(@PathVariable String account,Model model) throws Exception{
-		model.addAttribute("pager",sportdataService.findSportdatas(account));
+	public String findSportDatas(@PathVariable String account,Model model,
+								 @RequestParam(required = false,defaultValue ="1")Integer page,
+								 @RequestParam(required = false,defaultValue = "6")Integer rows){
+		PageHelper.startPage(page,rows);
+		List<Sportdata> allList = sportdataService.sportdataDownList(account);
+		PageInfo<Sportdata> p  = new PageInfo<Sportdata>(allList);
+		model.addAttribute("page",p);
 		model.addAttribute("user", userService.loadUser(account));
-		return "back/sportdatas";
+		return "back/data/sportdatas";
 	}
     
     /*查询测试*/
@@ -78,7 +98,7 @@ public class BackSportdataController {
 	public String searchSportDatas(Model model,String searchVal) throws Exception{
 		System.out.println(searchVal);
 		model.addAttribute("datas",sportdataService.sportdataDownList(searchVal));
-		return "back/sportdatas";
+		return "back/data/sportdatas";
 	}
 	
 	

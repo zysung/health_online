@@ -71,7 +71,7 @@ public class HospitalServiceImpl implements HospitalService {
 
 	public void add(Hospital hospital,String uploadImg) {
 		//对前端传来的base64图片编码进行解码，变成二进制数据
-		BASE64Decoder decoder = new BASE64Decoder();    
+		BASE64Decoder decoder = new BASE64Decoder();
 		try {  
 			if(uploadImg!=null){
 				String baseStr = uploadImg.substring(uploadImg.indexOf(',')+1);//对前台base64码进行裁剪，只留base64码

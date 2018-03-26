@@ -1,9 +1,12 @@
 package cn.edu.gdin.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import cn.edu.gdin.po.User;
 import cn.edu.gdin.service.UserService;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * 后台用户管理页面控制
@@ -26,10 +30,16 @@ public class BackUserController {
 	private UserService userService;
 	
 	@RequestMapping(value={"/users","/"},method=RequestMethod.GET)
-	public String findUsers(Model model,String condition){
-		model.addAttribute("pager",userService.findUsersByCondition(condition));
+	public String findUsers(Model model, String condition,
+							@RequestParam(required = false,defaultValue ="1")Integer page,
+							@RequestParam(required = false,defaultValue = "6")Integer rows){
+
+		PageHelper.startPage(page,rows);
+		List<User> allList = userService.findUsersByCondition(condition);
+		PageInfo<User> p  = new PageInfo<User>(allList);
+		model.addAttribute("page",p);
 		model.addAttribute("condition", condition);
-		return "user/users";
+		return "back/user/users";
 	}
 	/*@RequestMapping(value="/searchUsers",method=RequestMethod.GET)
 	public String findByCondition(Model model,@RequestParam(value="condition") String condition){
@@ -66,6 +76,6 @@ public class BackUserController {
 	@RequestMapping(value="{account}/show",method=RequestMethod.GET)
 	public String show(@PathVariable String account,Model model){
 		model.addAttribute("user",userService.loadUser(account));
-		return "user/show";
+		return "/back/user/show";
 	}
 }

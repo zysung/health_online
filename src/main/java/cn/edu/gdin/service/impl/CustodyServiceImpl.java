@@ -39,7 +39,6 @@ public class CustodyServiceImpl implements CustodyService {
     /**
      * 监控数据存储
      */
-    @Override
     public ResponseData custodyDataUpdate(Custody custody) throws Exception {
         ResponseData responseData = new ResponseData();
         responseData.setResult(false);
@@ -62,7 +61,6 @@ public class CustodyServiceImpl implements CustodyService {
      * 监控数据获取
      */
     @SuppressWarnings("finally")
-    @Override
     public ResponseData custodyDataDown(String userAccount) throws Exception {
         ResponseData responseData = new ResponseData();
         responseData.setResult(false);
@@ -98,7 +96,6 @@ public class CustodyServiceImpl implements CustodyService {
     /**
      *2.26更新， 第二种方法获取监控数据
      */
-    @Override
 	public ResponseData custodyDataDown2(String userAccount) throws Exception {
     	  ResponseData responseData = new ResponseData();
           responseData.setResult(false);
@@ -117,28 +114,13 @@ public class CustodyServiceImpl implements CustodyService {
     /**
      * 2.26更新，分页获取用户所有监护数据
      */
-	@Override
-	public Pager<Custody> findCustodyDatas(String userAccount) {
-		int pageSize = SystemContext.getSize();
-		int pageOffest = SystemContext.getOffset();
-		Pager<Custody> pages = new Pager<Custody>();
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("userAccount", userAccount);
-		params.put("pageSize", pageSize);
-		params.put("pageOffset", pageOffest);
-		
-		List<Custody> datas = custodyMapper.findCustodyByUserAccount(params);
-		pages.setDatas(datas);
-		pages.setOffset(pageOffest);
-		pages.setSize(pageSize);
-		int totalRecord = custodyMapper.findCount(params);
-		pages.setTotal(totalRecord);
-		return pages;
+	public List<Custody> findCustodyDatas(String userAccount) {
+		List<Custody> datas = custodyMapper.findCustodyByUserAccount(userAccount);
+		return datas;
 	}
 	/**
 	 * 3.3更新，获取所有用户最新监护信息，用于前台展示
 	 */
-	@Override
 	public Pager<Custody> findAllCustodydatas() {
 		int pageSize = SystemContext.getSize();
 		int pageOffest = SystemContext.getOffset();

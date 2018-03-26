@@ -35,7 +35,6 @@ public class SportdataServiceImpl implements SportdataService {
     private UserMapper userMapper;
 
     @SuppressWarnings("finally")
-    @Override
     public ResponseData sportdataUpdate(Sportdata sportdata) throws Exception {
         ResponseData responseData = new ResponseData();
         responseData.setMessage("运动数据存储失败");
@@ -53,7 +52,6 @@ public class SportdataServiceImpl implements SportdataService {
 
     }
 
-    @Override
     public ResponseData sportdataDown(String userAccount) throws Exception {
         ResponseData responseData = new ResponseData();
         responseData.setResult(false);
@@ -86,37 +84,14 @@ public class SportdataServiceImpl implements SportdataService {
     /**
      *2.25 更新，list获取一个用户全部运动数据
      */
-	@Override
 	public List<Sportdata> sportdataDownList(String userAccount) {
 		List<Sportdata> sdl = sportdataMapper.selectSportdataByUserAccount1(userAccount); 
 		return sdl;
 	}
-	/**
-	 * 2.26更新
-	 * 分页获取用户全部运动数据
-	 */
-	@Override
-	public Pager<Sportdata> findSportdatas(String userAccount) {
-		int pageSize = SystemContext.getSize();
-		int pageOffest = SystemContext.getOffset();
-		Pager<Sportdata> pages =  new Pager<Sportdata>();
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("userAccount", userAccount);
-		params.put("pageSize", pageSize);
-		params.put("pageOffset", pageOffest);
-		
-		List<Sportdata> datas = sportdataMapper.findSportdataByUserAccount(params);
-		pages.setDatas(datas);
-		pages.setOffset(pageOffest);
-		pages.setSize(pageSize);
-		int totalRecord = sportdataMapper.findCount(params);
-		pages.setTotal(totalRecord);
-		return pages;
-	}
+
 	/**
 	 * 3.3更新，获取所有用户运动信息，用于前台展示
 	 */
-	@Override
 	public Pager<Sportdata> findAllSportdatas() {
 		int pageSize = SystemContext.getSize();
 		int pageOffest = SystemContext.getOffset();

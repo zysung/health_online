@@ -38,7 +38,7 @@ public interface CustodyMapper {
     //通过UserAccount查询最新监控信息
     Custody queryMaxTime(String custodyId);
     //通过UserAccount分页查询所有运动信息  直接在sql中拼接子查询 2.26更新
-    List<Custody> findCustodyByUserAccount(Map<String, Object> params);
+    List<Custody> findCustodyByUserAccount(String userAccount);
     int findCount(Map<String, Object> params);
   //3.3更新，查询所有用户监护信息，用于前台展示
     List<Custody> findAllCustodydatas(Map<String, Object> params);

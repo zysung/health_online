@@ -4,6 +4,8 @@ import cn.edu.gdin.javaBean.ResponseData;
 import cn.edu.gdin.po.Custody;
 import cn.edu.gdin.po.Pager;
 
+import java.util.List;
+
 /**
  * CustodyService
  * @author wufen	
@@ -18,8 +20,8 @@ public interface CustodyService {
     ResponseData custodyDataDown(String userAccount)throws Exception;
     //第二种方法实习获取最新监护信息，用sql
     ResponseData custodyDataDown2(String userAccount)throws Exception;
-    //分页获取用户的全部监护信息
-    Pager<Custody> findCustodyDatas(String userAccount);
+    //获取用户的全部监护信息
+    List<Custody> findCustodyDatas(String userAccount);
   //3.3更新 获取所有用户运动信息，用于前台展示
     Pager<Custody> findAllCustodydatas();
 }

@@ -75,6 +75,6 @@
 		</property>
 	</bean>
 	
-		<!-- 将静态文件（css等）指定到某个特殊文件夹中统一处理 -->	
+		<!--静态文件映射 -->
 	<mvc:resources location="/staticfile/" mapping="/staticfile/**"/><!-- 处理文件夹中所有子文件夹的内容 -->
 </beans>

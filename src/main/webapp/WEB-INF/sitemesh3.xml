@@ -2,5 +2,7 @@
 <sitemesh>
 <!--register页面的装饰页面为没有菜单栏 的registerDecorator.jsp -->
     <mapping path="/back/*" decorator="/WEB-INF/decorators/main.jsp" />
+    <mapping path="/doctor/*" decorator="/WEB-INF/decorators/mainfordoctor.jsp" />
+    <mapping path="/user/*" decorator="/WEB-INF/decorators/mainforuser.jsp" />
     <mapping path="/showdatas/*" decorator="/WEB-INF/decorators/showdatas.jsp" />
 </sitemesh>

@@ -20,20 +20,21 @@
 	 <!-- 通知 -->
 	 <tx:advice id="txAdvice" transaction-manager="transactionManager">
 	 	<tx:attributes>
-	 		<tx:method name="save*" propagation="REQUIRED"/>
-	 		<tx:method name="insert*" propagation="REQUIRED"/>
-	 		<tx:method name="update*" propagation="REQUIRED"/>
-	 		<tx:method name="delete*" propagation="REQUIRED"/>
-	 		<tx:method name="find*" propagation="SUPPORTS" read-only="true"/>
-	 		<tx:method name="select*" propagation="SUPPORTS" read-only="true"/>
-	 		<tx:method name="get*" propagation="SUPPORTS" read-only="true"/>
-	 	</tx:attributes>
-	 </tx:advice>
-	 
-	 <!-- aop -->
+		<!-- 拦截save开头的方法，事务传播行为为：REQUIRED：必须要有事务, 如果没有就在上下文创建一个 -->
+		 <tx:method name="save*" propagation="REQUIRED"/>
+		 <tx:method name="insert*" propagation="REQUIRED"/>
+		 <tx:method name="update*" propagation="REQUIRED"/>
+		 <tx:method name="delete*" propagation="REQUIRED"/>
+			<!--SUPPORT 如果存在一个事务，支持当前事务。如果没有事务，则非事务的执行。 -->
+		 <tx:method name="find*" propagation="SUPPORTS" read-only="true"/>
+		 <tx:method name="select*" propagation="SUPPORTS" read-only="true"/>
+		 <tx:method name="get*" propagation="SUPPORTS" read-only="true"/>
+	 </tx:attributes>
+	</tx:advice>
+
+	<!-- aop -->
 	 <aop:config>
-	 	<aop:advisor advice-ref="txAdvice"
-	 				 pointcut="execution(* cn.edu.gdin.service.impl.*.*(..))"/>
+	 	<aop:advisor advice-ref="txAdvice" pointcut="execution(* cn.edu.gdin.service.impl.*.*(..))"/>
 	 </aop:config>
 	
 </beans>

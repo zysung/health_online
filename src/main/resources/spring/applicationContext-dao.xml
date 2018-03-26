@@ -14,6 +14,9 @@
 		<property name="jdbcUrl" value="${jdbc.url}" />
 		<property name="user" value="${jdbc.username}" />
 		<property name="password" value="${jdbc.password}" />
+		<property name="initialPoolSize" value="10"/>
+		<property name="maxPoolSize" value="100"/>
+		<property name="acquireIncrement" value="2"/>
 	</bean>
 
 
@@ -30,7 +33,20 @@
 				<value>classpath:mapper/*.xml</value>
 			</list>
 		</property>
-
+		<!-- 配置分页插件 -->
+		<property name="plugins">
+			<array>
+				<bean class="com.github.pagehelper.PageInterceptor"><!--5.0.0之后变成了PageInterceptor,在5.0中使用了helperDialect代替了原来的dialect属性。-->
+					<!-- 这里的几个配置主要演示如何使用，如果不理解，一定要去掉下面的配置 -->
+					<property name="properties">
+						<value>
+							helperDialect=mysql
+							reasonable=true
+						</value>
+					</property>
+				</bean>
+			</array>
+		</property>
 	</bean>
 	<!-- mapper接口namepspace绑定方式 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">

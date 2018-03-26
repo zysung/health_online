@@ -7,6 +7,8 @@ import cn.edu.gdin.javaBean.ResponseData;
 import cn.edu.gdin.po.Pager;
 import cn.edu.gdin.po.User;
 
+import java.util.List;
+
 /**
  * UserService
  * @author wufen	
@@ -46,7 +48,7 @@ public interface UserService {
      * @param condition
      * @return
      */
-    public Pager<User> findUsersByCondition(String condition);
+    public List<User> findUsersByCondition(String condition);
     
     public Pager<User> findUsers();
 }

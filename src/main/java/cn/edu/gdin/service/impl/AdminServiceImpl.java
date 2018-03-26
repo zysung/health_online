@@ -13,7 +13,7 @@ public class AdminServiceImpl implements AdminService {
 	AdminMapper  adminMapper;
 	
 	@SuppressWarnings("finally")
-	@Override
+
 	public ResponseData login(String adminName, String password) {
 		ResponseData responseData = new ResponseData();
         responseData.setResult(false);
@@ -38,7 +38,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@SuppressWarnings("finally")
-	@Override
+
 	public ResponseData regist(Admin admin) {
 		ResponseData responseData = new ResponseData();
         responseData.setResult(false);
@@ -61,7 +61,7 @@ public class AdminServiceImpl implements AdminService {
         }
 	}
 
-	@Override
+
 	public Admin loadByName(String adminName) {
 		Admin admin = adminMapper.selectByAdminName(adminName);
 		return admin;

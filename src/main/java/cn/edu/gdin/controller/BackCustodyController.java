@@ -1,5 +1,9 @@
 package cn.edu.gdin.controller;
 
+import cn.edu.gdin.po.Custody;
+import cn.edu.gdin.po.User;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import cn.edu.gdin.service.CustodyService;
 import cn.edu.gdin.service.UserService;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
+
+import static com.sun.xml.internal.ws.api.model.wsdl.WSDLBoundOperation.ANONYMOUS.required;
+
 /**
  * 后台监护数据页面控制
  * @author zysung
@@ -16,7 +26,7 @@ import cn.edu.gdin.service.UserService;
  */
 
 @Controller
-@RequestMapping("/back")
+@RequestMapping("/back/data")
 public class BackCustodyController {
 
 	@Autowired
@@ -30,10 +40,16 @@ public class BackCustodyController {
 	 * @throws Exception
 	 */
     @RequestMapping(value="/userstocustodydatas",method=RequestMethod.GET)
-    public String findCustodyDatasByUsers(Model model,String condition) throws Exception{
-    	model.addAttribute("pager",userService.findUsersByCondition(condition));
-    	model.addAttribute("condition", condition);
-		return "back/userstocustodydatas";
+    public String findCustodyDatasByUsers(Model model, String condition,
+										  @RequestParam(required = false,defaultValue ="1")Integer page,
+										@RequestParam(required = false,defaultValue = "6")Integer rows){
+
+		PageHelper.startPage(page,rows);
+		List<User> allList = userService.findUsersByCondition(condition);
+		PageInfo<User> p  = new PageInfo<User>(allList);
+		model.addAttribute("page",p);
+		model.addAttribute("condition", condition);
+		return "back/data/userstocustodydatas";
 	}
     /**
      * 模糊查询用户
@@ -57,7 +73,7 @@ public class BackCustodyController {
 	public String getLatestSportData(@PathVariable String account,Model model) throws Exception{
 		model.addAttribute("latestCustodyData",custodyService.custodyDataDown2(account).getData());
 		model.addAttribute("user", userService.loadUser(account));
-		return "back/latestcustodydata";
+		return "back/data/latestcustodydata";
 	}
     
     /**
@@ -68,10 +84,15 @@ public class BackCustodyController {
      * @throws Exception
      */
     @RequestMapping(value="/{account}/custodydatas",method=RequestMethod.GET)
-	public String findSportDatas(@PathVariable String account,Model model) throws Exception{
-		model.addAttribute("pager",custodyService.findCustodyDatas(account));
+	public String findSportDatas(@PathVariable String account,Model model,
+												 @RequestParam(required = false,defaultValue ="1")Integer page,
+								 @RequestParam(required = false,defaultValue = "6")Integer rows){
+		PageHelper.startPage(page,rows);
+		List<Custody> allList = custodyService.findCustodyDatas(account);
+		PageInfo<Custody> p  = new PageInfo<Custody>(allList);
+		model.addAttribute("page",p);
 		model.addAttribute("user", userService.loadUser(account));
-		return "back/custodydatas";
+		return "back/data/custodydatas";
 	}
 	
 	

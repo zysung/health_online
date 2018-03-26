@@ -73,7 +73,7 @@ public class UserServiceImpl implements UserService {
     private String accountAvatorName = "";
     
     @SuppressWarnings("finally")
-    @Override
+
     public ResponseData resetPwd(String account) throws Exception {
         ResponseData responseData = new ResponseData();
         responseData.setMessage("密码重置失败！");
@@ -125,7 +125,7 @@ public class UserServiceImpl implements UserService {
         return responseData;
     }
     
-    @Override
+
     public ModelAndView resetPwd2(String account, String validateCode) throws Exception {
         ModelAndView modelAndView = new ModelAndView();
         if(account!=null&&validateCode!=null){
@@ -140,7 +140,7 @@ public class UserServiceImpl implements UserService {
         return modelAndView;
     }
     
-    @Override
+
     public ModelAndView resetPwd3(String account, String validateCode, String password) throws Exception {
         ModelAndView modelAndView = new ModelAndView();
         if(account!=null&&validateCode!=null&&password!=null){
@@ -158,7 +158,7 @@ public class UserServiceImpl implements UserService {
 
 
     @SuppressWarnings("finally")
-    @Override
+
     public ResponseData login(String account, String password){
         ResponseData responseData = new ResponseData();
         responseData.setResult(false);
@@ -187,7 +187,7 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    @Override
+
     public byte[] accountAvator(String accountId, String validate) {
         byte[] avatar = new byte[1024*1024*20];
         try {
@@ -202,7 +202,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @SuppressWarnings("finally")
-    @Override
+
     public ResponseData regist(User user, MultipartFile avator){
         ResponseData responseData = new ResponseData();
         responseData.setMessage("注册失败！");
@@ -228,7 +228,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @SuppressWarnings("finally")
-    @Override
+
     public ResponseData userInforDown(String account) throws Exception {
         ResponseData responseData = new ResponseData();
         responseData.setMessage("个人资料获取失败");
@@ -253,29 +253,20 @@ public class UserServiceImpl implements UserService {
      * 2.25更新
      * 获取分页对象，以及不转码的获取user
      */
-	@Override
-	public Pager<User> findUsersByCondition(String condition) {
-		int pageSize = SystemContext.getSize();
-		int pageOffest = SystemContext.getOffset();
-		Pager<User> pages = new Pager<User>();
+
+	public List<User> findUsersByCondition(String condition) {
+
 		Map<String, Object> params = new HashMap<String, Object>();
 		if(condition!=null && !"".equals(condition)){
 			condition= "%"+condition+"%";
 		}
 		params.put("condition", condition);
-		params.put("pageSize", pageSize);
-		params.put("pageOffset", pageOffest);
-		
+
 		List<User> datas = userMapper.findByCondition(params);
-		pages.setDatas(datas);
-		pages.setOffset(pageOffest);
-		pages.setSize(pageSize);
-		int totalRecord = userMapper.findCount(params);
-		pages.setTotal(totalRecord);
-		return pages;
+		return datas;
 	}
 
-	@Override
+
 	public Pager<User> findUsers() {
 		int pageSize = SystemContext.getSize();
 		int pageOffest = SystemContext.getOffset();
@@ -293,13 +284,13 @@ public class UserServiceImpl implements UserService {
 		return pages;
 	}
 
-	@Override
+
 	public User loadUser(String account) {
 		User user = userMapper.selectByPrimaryKey(account);
 		return user;
 	}
 	//简单实现，待用responseData改进
-	@Override
+
 	public void deleteUser(String account) {
 		userMapper.deleteByPrimaryKey(account);
 	}
